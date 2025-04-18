@@ -29,7 +29,7 @@
 </style>
 <body>
 	<%--navbar --%>
-	<%@include file="all-components/navbar.jsp"%> 
+	<%@include file="all-components/navbar.jsp"%> --%>
 
 	<%--background img --%>
 	<div class="container-fluid back-img">
@@ -40,7 +40,72 @@
 
 	<%--card on homepage --%>
 	<!-- start: recent books -->
-	
+	<div class="container-fluid text-center">
+		<h3>Recent Books</h3>
+		<div class="row">
+			<%
+			BooksDAOImpl bd2 = new BooksDAOImpl(DBConnection.getCon());
+			List<BookDetails> list2 = bd2.getRecentBooks();
+
+			for (BookDetails b2 : list2) {
+			%>
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-body text-center">
+						<img alt="book"
+							  src="<%= request.getContextPath() + "/books/" + b2.getPhoto() %>" 
+							class="img-fluid mb-2"
+							style="height: 200px; object-fit: contain;"> 
+						<h5 class="card-title"><%=b2.getBookname()%></h5>
+						<p class="card-text mb-1"><%=b2.getAuthor()%></p>
+						<%
+						if (b2.getBookCategory().equals("Old Book")) {
+						%>
+						<div class="row d-flex">
+							<div class=" justify-content-center gap-2 flex-wrap">
+								<p class="card-text">
+									Category:
+									<%=b2.getBookCategory()%></p>
+								<a href="#" class="btn btn-sm btn-danger">View</a> <a href="#"
+									class="btn btn-sm btn-danger"><i
+									class="fa-solid fa-indian-rupee-sign"></i><%=b2.getPrice()%></a>
+							</div>
+						</div>
+
+						<%
+						} else {
+						%>
+						<p class="card-text">
+							Category:
+							<%=b2.getBookCategory()%></p>
+						<div class="d-flex justify-content-center gap-2 flex-wrap">
+							<a href="#" class="btn btn-sm btn-danger"><i
+								class="fa-solid fa-cart-shopping"></i> Add Cart</a> <a href="#"
+								class="btn btn-sm btn-danger">View</a> <a href="#"
+								class="btn btn-sm btn-danger"><i
+								class="fa-solid fa-indian-rupee-sign"></i><%=b2.getPrice()%></a>
+						</div>
+						<%
+						}
+						%>
+
+
+					</div>
+				</div>
+			</div>
+			<%
+			}
+			%>
+		</div>
+		<div>
+			<a href="allRecentBooks.jsp" class="btn  btn-lg btn-danger m-3 text-white"> View
+				All</a>
+		</div>
+	</div>
+
+
+	<!-- end : recentbooks -->
+
 	<hr>
 	<%--start - New book --%>
 	<div class="container-fluid text-center">
@@ -55,10 +120,10 @@
 			<div class="col-md-3">
 				<div class="card">
 					<div class="card-body text-center">
-						<img alt="book"
+					<img alt="book"
 							  src="<%= request.getContextPath() + "/books/" + b.getPhoto() %>" 
 							class="img-fluid mb-2"
-							style="height: 200px; object-fit: contain;"> 
+							style="height: 200px; object-fit: contain;">
 						<h5 class="card-title"><%=b.getBookname()%></h5>
 						<p class="card-text mb-1"><%=b.getAuthor()%></p>
 						<p class="card-text">
