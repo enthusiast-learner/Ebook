@@ -325,12 +325,12 @@ public class BooksDAOImpl implements BooksDao {
 		}
 		
 		
-		return null;
+		return list;
 	}
 
 	@Override
 	public List<BookDetails> getAllNewBooks() {
-		List<BookDetails> bookdetails = new ArrayList<BookDetails>();
+		List<BookDetails> list = new ArrayList<BookDetails>();
 		BookDetails b = null;
 
 		try {
@@ -343,7 +343,9 @@ public class BooksDAOImpl implements BooksDao {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
+				
 				b = new BookDetails();
+				
 				b.setBook_id(rs.getInt(1));
 				b.setBookname(rs.getString(2));
 				b.setAuthor(rs.getString(3));
@@ -352,14 +354,15 @@ public class BooksDAOImpl implements BooksDao {
 				b.setStatus(rs.getString(6));
 				b.setPhoto(rs.getString(7));
 				b.setEmail(rs.getString(8));
-				bookdetails.add(b);
+				
+				list.add(b);
 				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		return list;
 	}
 
 }

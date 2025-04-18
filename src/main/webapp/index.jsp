@@ -144,7 +144,7 @@
 			%>
 		</div>
 		<div>
-			<a href="" class="btn  btn-lg btn-danger m-3 text-white"> View
+			<a href="allNewBooks.jsp" class="btn  btn-lg btn-danger m-3 text-white"> View
 				All</a>
 		</div>
 	</div>
