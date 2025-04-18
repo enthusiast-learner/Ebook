@@ -1,1 +1,19 @@
-/build/
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# Build directories and files
+target/
+*.class
+
+# Eclipse IDE preferences
+*.prefs
+
+# Log files
+*.log
+
+# Backup and temp files
+*~
+*.bak
+*.swp
