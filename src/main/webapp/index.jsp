@@ -1,10 +1,12 @@
 
+<%@page import="com.Entity.UserEntity"%>
 <%@page import="com.Entity.BookDetails"%>
 <%@page import="java.util.List"%>
 <%@page import="database.DBConnection"%>
 <%@page import="com.DAO.BooksDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +30,18 @@
 }
 </style>
 <body>
+
+	<%
+	HttpSession se = request.getSession(false);
+	UserEntity us = null;
+
+	if (se != null) {
+		us = (UserEntity) session.getAttribute("userinfo");
+	}
+	%>
+
 	<%--navbar --%>
-	<%@include file="all-components/navbar.jsp"%> --%>
+	<%@include file="all-components/navbar.jsp"%>
 
 	<%--background img --%>
 	<div class="container-fluid back-img">
@@ -53,9 +65,9 @@
 				<div class="card">
 					<div class="card-body text-center">
 						<img alt="book"
-							  src="<%= request.getContextPath() + "/books/" + b2.getPhoto() %>" 
+							src="<%=request.getContextPath() + "/books/" + b2.getPhoto()%>"
 							class="img-fluid mb-2"
-							style="height: 200px; object-fit: contain;"> 
+							style="height: 200px; object-fit: contain;">
 						<h5 class="card-title"><%=b2.getBookname()%></h5>
 						<p class="card-text mb-1"><%=b2.getAuthor()%></p>
 						<%
@@ -66,7 +78,8 @@
 								<p class="card-text">
 									Category:
 									<%=b2.getBookCategory()%></p>
-								<a href="#" class="btn btn-sm btn-danger">View</a> <a href="#"
+								<a href="viewBook.jsp?bid=<%=b2.getBook_id()%>"
+									class="btn btn-sm btn-danger">View</a> <a href="#"
 									class="btn btn-sm btn-danger"><i
 									class="fa-solid fa-indian-rupee-sign"></i><%=b2.getPrice()%></a>
 							</div>
@@ -79,8 +92,32 @@
 							Category:
 							<%=b2.getBookCategory()%></p>
 						<div class="d-flex justify-content-center gap-2 flex-wrap">
-							<a href="#" class="btn btn-sm btn-danger"><i
-								class="fa-solid fa-cart-shopping"></i> Add Cart</a> <a href="#"
+
+
+							<%
+							if (us == null) {
+							%>
+							<a href="loginpage.jsp" class="btn btn-sm btn-danger"> <i
+								class="fa-solid fa-cart-shopping"></i> Add Cart
+							</a>
+							<%
+							} else {
+							%>
+							<!-- This is creating a URL that sends two query parameters to the servlet: bid and uid -->
+							<!-- bid : which book add to the card
+					   uid : which user adding the book to the cart
+					 -->
+
+							<a
+								href="cartServlet?bid=<%=b2.getBook_id()%>&uid=<%=us.getUid()%>"
+								class="btn btn-sm btn-danger"> <i
+								class="fa-solid fa-cart-shopping"></i> Add Cart
+							</a>
+							<%
+							}
+							%>
+
+							<a href="viewBook.jsp?bid=<%=b2.getBook_id()%>"
 								class="btn btn-sm btn-danger">View</a> <a href="#"
 								class="btn btn-sm btn-danger"><i
 								class="fa-solid fa-indian-rupee-sign"></i><%=b2.getPrice()%></a>
@@ -98,8 +135,8 @@
 			%>
 		</div>
 		<div>
-			<a href="allRecentBooks.jsp" class="btn  btn-lg btn-danger m-3 text-white"> View
-				All</a>
+			<a href="allRecentBooks.jsp"
+				class="btn  btn-lg btn-danger m-3 text-white"> View All</a>
 		</div>
 	</div>
 
@@ -109,8 +146,10 @@
 	<hr>
 	<%--start - New book --%>
 	<div class="container-fluid text-center">
+
 		<h3>New Books</h3>
 		<div class="row ">
+
 			<%
 			BooksDAOImpl bd = new BooksDAOImpl(DBConnection.getCon());
 			List<BookDetails> list = bd.getNewBooks();
@@ -120,8 +159,8 @@
 			<div class="col-md-3">
 				<div class="card">
 					<div class="card-body text-center">
-					<img alt="book"
-							  src="<%= request.getContextPath() + "/books/" + b.getPhoto() %>" 
+						<img alt="book"
+							src="<%=request.getContextPath() + "/books/" + b.getPhoto()%>"
 							class="img-fluid mb-2"
 							style="height: 200px; object-fit: contain;">
 						<h5 class="card-title"><%=b.getBookname()%></h5>
@@ -130,8 +169,30 @@
 							Category:
 							<%=b.getBookCategory()%></p>
 						<div class="d-flex justify-content-center gap-2 flex-wrap">
-							<a href="#" class="btn btn-sm btn-danger"><i
-								class="fa-solid fa-cart-shopping"></i> Add Cart</a> <a href="#"
+
+							<%
+							if (us == null) {
+							%>
+							<a href="loginpage.jsp" class="btn btn-sm btn-danger"> <i
+								class="fa-solid fa-cart-shopping"></i> Add Cart
+							</a>
+							<%
+							} else {
+							%>
+							<!-- This is creating a URL that sends two query parameters to the servlet: bid and uid -->
+							<!-- bid : which book add to the card
+					   uid : which user adding the book to the cart
+					 -->
+
+							<a
+								href="cartServlet?bid=<%=b.getBook_id()%>&uid=<%=us.getUid()%>"
+								class="btn btn-sm btn-danger"> <i
+								class="fa-solid fa-cart-shopping"></i> Add Cart
+							</a>
+							<%
+							}
+							%>
+							<a href="viewBook.jsp?bid=<%=b.getBook_id()%>"
 								class="btn btn-sm btn-danger">View</a> <a href="#"
 								class="btn btn-sm btn-danger"><i
 								class="fa-solid fa-indian-rupee-sign"></i><%=b.getPrice()%></a>
@@ -144,8 +205,8 @@
 			%>
 		</div>
 		<div>
-			<a href="allNewBooks.jsp" class="btn  btn-lg btn-danger m-3 text-white"> View
-				All</a>
+			<a href="allNewBooks.jsp"
+				class="btn  btn-lg btn-danger m-3 text-white"> View All</a>
 		</div>
 	</div>
 
@@ -155,24 +216,24 @@
 		<div class="row ">
 			<%
 			BooksDAOImpl bdao = new BooksDAOImpl(DBConnection.getCon());
-			   List<BookDetails> list3= bdao.getOldBooks();
-			   
-			   for(BookDetails b3 : list3){
+			List<BookDetails> list3 = bdao.getOldBooks();
+
+			for (BookDetails b3 : list3) {
 			%>
 			<div class="col-md-3">
 				<div class="card">
 					<div class="card-body text-center">
 						<img alt="book"
-						  src="<%= request.getContextPath() + "/books/" + b3.getPhoto() %>" 
+							src="<%=request.getContextPath() + "/books/" + b3.getPhoto()%>"
 							class="img-fluid mb-2"
-							style="height: 200px; object-fit: contain;"> 
+							style="height: 200px; object-fit: contain;">
 						<h5 class="card-title"><%=b3.getBookname()%></h5>
 						<p class="card-text mb-1"><%=b3.getAuthor()%></p>
 						<p class="card-text">
 							Category:
 							<%=b3.getBookCategory()%></p>
 						<div class="d-flex justify-content-center gap-2 flex-wrap">
-							 <a href="#"
+							<a href="viewBook.jsp?bid=<%=b3.getBook_id()%>"
 								class="btn btn-sm btn-danger">View</a> <a href="#"
 								class="btn btn-sm btn-danger"><i
 								class="fa-solid fa-indian-rupee-sign"></i><%=b3.getPrice()%></a>
@@ -185,8 +246,8 @@
 			%>
 		</div>
 		<div>
-			<a href="" class="btn  btn-lg btn-danger m-3 text-white"> View
-				All</a>
+			<a href="allOldBooks.jsp"
+				class="btn  btn-lg btn-danger m-3 text-white"> View All</a>
 		</div>
 	</div>
 

@@ -55,7 +55,7 @@
 							<%=b2.getBookCategory()%></p>
 						<div class="d-flex justify-content-center gap-2 flex-wrap">
 							<a href="#" class="btn btn-sm btn-danger"><i
-								class="fa-solid fa-cart-shopping"></i> Add Cart</a> <a href="#"
+								class="fa-solid fa-cart-shopping"></i> Add Cart</a> <a href="viewBook.jsp?bid=<%=b2.getBook_id()%>"
 								class="btn btn-sm btn-danger">View</a> <a href="#"
 								class="btn btn-sm btn-danger"><i
 								class="fa-solid fa-indian-rupee-sign"></i><%=b2.getPrice()%></a>

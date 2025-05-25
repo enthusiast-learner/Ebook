@@ -1,6 +1,7 @@
 <%@page import="com.Entity.UserEntity"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,38 +25,59 @@
 				</a>
 
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-3">
 
 				<form class="d-flex">
 
-					
+
 
 					<input class="form-control me-2" type="search" placeholder="Search"
 						aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 			</div>
-			<div class="col-md-3">
-			<%
-					 UserEntity users = (UserEntity) session.getAttribute("userinfo");
-					
-			if(users!=null){%>
-				<a class="btn btn-primary" href="loginpage.jsp"><i
-					class="fa-solid fa-right-to-bracket"></i>Logout</a>
-			<% 
-			}
+
+
+			<div class="col-md-6">
+    <c:if test="${not empty userinfo}">
+        <div class="d-flex align-items-center justify-content-end gap-2 flex-wrap">
+            
+            <!-- Cart -->
+            <a href="cart.jsp" class="btn btn-sm btn-warning d-flex align-items-center">
+                <i class="fa fa-shopping-cart me-1"></i>Cart
+            </a>
+
+            <!-- Username (with nowrap and ellipsis) -->
+            <a class="btn btn-sm btn-primary d-flex align-items-center"
+               href="#"
+               style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <i class="fa fa-user me-1"></i>
+                ${userinfo.name}
+            </a>
+
+            <!-- Logout -->
+            <a class="btn btn-sm btn-danger d-flex align-items-center"
+               href="<%=request.getContextPath()%>/Logoutservlet">
+                <i class="fa-solid fa-right-to-bracket me-1"></i>Logout
+            </a>
+
+        </div>
+    </c:if>
+
+    <c:if test="${empty userinfo}">
+        <div class="d-flex align-items-center justify-content-end gap-2">
+            <a class="btn btn-sm btn-primary d-flex align-items-center" href="loginpage.jsp">
+                <i class="fa-solid fa-right-to-bracket me-1"></i>Login
+            </a>
+            <a class="btn btn-sm btn-success d-flex align-items-center" href="registrationpage.jsp">
+                <i class="fa fa-user-plus me-1" aria-hidden="true"></i>Registration
+            </a>
+        </div>
+    </c:if>
+</div>
 			
-			else{%>
-				<a class="btn btn-primary" href="loginpage.jsp"><i
-					class="fa-solid fa-right-to-bracket"></i>Login</a>
-				
-			<% }%>
-			
-			
-				 <a
-					class="btn btn-success" href="registrationpage.jsp"><i
-					class="fa fa-user-plus" aria-hidden="true"></i>Registration</a>
-			</div>
+
+
 		</div>
 
 	</div>
@@ -80,18 +102,21 @@
 						aria-current="page" href="index.jsp"><i
 							class="fa-solid fa-house"></i>Home</a></li>
 					<li class="nav-item active"><a class="nav-link active"
-						href="allRecentBooks.jsp"><i class="fa-solid fa-book"></i>Recent Book</a></li>
-					<li class="nav-item"><a class="nav-link active" href="allNewBooks.jsp"><i
-							class="fa-solid fa-book-open"></i>New Book</a></li>
-					<li class="nav-item"><a class="nav-link active" href="allOldBooks.jsp"><i
-							class="fa-solid fa-book"></i>Old Book</a></li>
+						href="allRecentBooks.jsp"><i class="fa-solid fa-book"></i>Recent
+							Book</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="allNewBooks.jsp"><i class="fa-solid fa-book-open"></i>New
+							Book</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						href="allOldBooks.jsp"><i class="fa-solid fa-book"></i>Old
+							Book</a></li>
 				</ul>
 
 				<form class="d-flex">
 
-					<button class="btn btn-success " type="submit">
+					<a href="setting.jsp" class="btn btn-light " type="submit">
 						<i class="fa-solid fa-gear"></i>Setting
-					</button>
+					</a>
 					<button class="btn btn-primary" type="submit">
 						<i class="fa-solid fa-phone"></i>Contact Us
 					</button>

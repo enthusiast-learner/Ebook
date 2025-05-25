@@ -1,6 +1,6 @@
 package com.DAO;
 
-import java.awt.print.Book;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.Entity.BookDetails;
-import com.mysql.cj.protocol.Resultset;
+
 
 public class BooksDAOImpl implements BooksDao {
 

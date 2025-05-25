@@ -35,7 +35,7 @@
 							Category:
 							<%=b3.getBookCategory()%></p>
 						<div class="d-flex justify-content-center gap-2 flex-wrap">
-							 <a href="#"
+							 <a href="viewBook.jsp?bid=<%=b3.getBook_id()%>"
 								class="btn btn-sm btn-danger">View</a> <a href="#"
 								class="btn btn-sm btn-danger"><i
 								class="fa-solid fa-indian-rupee-sign"></i><%=b3.getPrice()%></a>
@@ -47,10 +47,7 @@
 			}
 			%>
 		</div>
-		<div>
-			<a href="" class="btn  btn-lg btn-danger m-3 text-white"> View
-				All</a>
-		</div>
+		
 	</div>
 </body>
 </html>

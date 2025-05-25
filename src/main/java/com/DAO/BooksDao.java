@@ -26,4 +26,6 @@ public interface BooksDao {
 	public List<BookDetails> getAllOldBooks();
 	
 	public List<BookDetails> getAllNewBooks();
+	
+	 
 }

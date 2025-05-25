@@ -50,23 +50,18 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		  if(users!=null) {
 			  session.setAttribute("userinfo", users);
 			 
-			  resp.sendRedirect("home.jsp");
+			  resp.sendRedirect("index.jsp");
+//			  resp.sendRedirect("home.jsp");
 			  System.out.println("login suceesfully");
 			  System.out.println(users.getName());
 			  
 		  }
 		  else {
 			  resp.sendRedirect("loginpage.jsp");
-			  session.setAttribute("logfail", "Login Failed..Please try again");
-			  
+			  session.setAttribute("logfail", "Login Failed..Please try again");  
 			  System.out.println("login fail");
 		  }
 		
-	}
-	
-	
-
-  
-	  
+	}  
 }
 }

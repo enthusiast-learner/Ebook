@@ -39,7 +39,8 @@ public class DBConnection {
 //				localhost : your DB is on local machine
 //				3306 : default port for MySQL
 //				dbname,username,password
-				con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/ebook","root","root");//creates connection to DB using JSBC
+//				con: inside this the Db connection is store
+				con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/ebook","root","root");//creates connection to DB using JDBC and store it inside con
 			}
 //			this handles any exception occurs during connection
 //			like wron url , Db not running ,driver not found - it print stack trace for debugging
@@ -52,7 +53,6 @@ public class DBConnection {
 		
 	}
 }
-
 //we are not creating the new connection everytime 
 //we are just fetching the existing connection 
 //same connection object is reused everytime

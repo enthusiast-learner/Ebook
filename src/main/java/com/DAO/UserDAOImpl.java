@@ -1,12 +1,13 @@
 package com.DAO;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import org.apache.catalina.User;
 
 import com.Entity.UserEntity;
-import com.mysql.jdbc.ResultSet;
+
 
 public class UserDAOImpl implements UserDAO	 {
 
