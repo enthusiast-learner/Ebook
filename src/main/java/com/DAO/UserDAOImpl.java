@@ -3,6 +3,7 @@ package com.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import org.apache.catalina.User;
 
@@ -81,6 +82,57 @@ public class UserDAOImpl implements UserDAO	 {
 		return us;
 		
 		
+	}
+
+	@Override
+	public boolean checkPassword(int uid , String password) {
+		Boolean b = false;
+		
+		try {
+			
+			String sql ="select * from user where uid=? and password=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, uid);
+			ps.setString(2, password);
+			
+			  ResultSet rs = ps.executeQuery();
+			  
+			  while(rs.next()) {
+				  b=true;
+			  }
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return b;
+	}
+
+	@Override 
+	public boolean updateUserInfo(UserEntity us) {
+		boolean b = false;
+		try {
+			
+			String sql = "update user set name=? ,email=? ,mobile=? where uid=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, us.getName());
+			ps.setString(2, us.getEmail());
+			ps.setString(3, us.getMobile());
+			
+			
+			ps.setInt(4, us.getUid());
+			System.out.println(us.getUid());
+			  int affectedrow = ps.executeUpdate();
+			  
+			  if(affectedrow > 0 ) {
+				  b = true ;
+			  }
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return b;
 	}
 	
 	

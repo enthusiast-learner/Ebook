@@ -18,7 +18,7 @@
 		<div class="row ">
 			<%
 			BooksDAOImpl bdao = new BooksDAOImpl(DBConnection.getCon());
-			   List<BookDetails> list3= bdao.getOldBooks();
+			   List<BookDetails> list3= bdao.getAllOldBooks();
 			   
 			   for(BookDetails b3 : list3){
 			%>

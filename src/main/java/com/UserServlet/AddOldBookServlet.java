@@ -27,7 +27,7 @@ public class AddOldBookServlet extends HttpServlet {
 			String author = req.getParameter("Authorname");
 			Double price = Double.parseDouble(req.getParameter("price"));
 			String category = "Old Book";
-			String status = "Active";
+			String status = "Available";
 			
 			String useremail = req.getParameter("user");
 
@@ -60,7 +60,7 @@ public class AddOldBookServlet extends HttpServlet {
 				        f.mkdirs(); // <-- creates folder if it doesn't exist
 				    }
 				part.write(path + File.separator + fileName);
-				session.setAttribute("succmsg", "Book add successfully");
+				session.setAttribute("succmsg", "Book added successfully");
 				System.out.println("added");
 				resp.sendRedirect("sellBook.jsp");
 				

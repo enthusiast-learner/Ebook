@@ -27,5 +27,11 @@ public interface BooksDao {
 	
 	public List<BookDetails> getAllNewBooks();
 	
+	public List<BookDetails> getBookByOld(String email, String category);
+	
+	public boolean delUserOldBook(int bid);
+	
+	
+	
 	 
 }

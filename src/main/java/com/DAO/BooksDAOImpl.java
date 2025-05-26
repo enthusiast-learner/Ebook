@@ -1,6 +1,5 @@
 package com.DAO;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.Entity.BookDetails;
-
 
 public class BooksDAOImpl implements BooksDao {
 
@@ -217,8 +215,7 @@ public class BooksDAOImpl implements BooksDao {
 				b.setStatus(rs.getString(6));
 				b.setPhoto(rs.getString(7));
 				b.setEmail(rs.getString(8));
-					
-			
+
 				list.add(b);
 				i++;
 			}
@@ -232,48 +229,15 @@ public class BooksDAOImpl implements BooksDao {
 	public List<BookDetails> getOldBooks() {
 		List<BookDetails> list = new ArrayList<BookDetails>();
 		BookDetails b = null;
-		
-		try {
-			String sql = "Select * from book_details where bookCategory=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, "Old Book");
-			
-			 ResultSet rs = ps.executeQuery();
-			 int i = 1;
-			 while(rs.next() && i<=4) {
-				 b=  new BookDetails();
-				 b.setBook_id(rs.getInt(1));
-					b.setBookname(rs.getString(2));
-					b.setAuthor(rs.getString(3));
-					b.setPrice(rs.getDouble(4));
-					b.setBookCategory(rs.getString(5));
-					b.setStatus(rs.getString(6));
-					b.setPhoto(rs.getString(7));
-					b.setEmail(rs.getString(8));
-					
-					list.add(b);
-					i++;
-			 }
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 
-	@Override
-	public List<BookDetails> getAllRecentBooks() {
-		List<BookDetails> list = new ArrayList<BookDetails>();
-		BookDetails b = null;
-		
 		try {
-			String sql = "SELECT * FROM book_details WHERE status = ? ORDER BY book_id DESC ";
+			String sql = "Select * from book_details where bookCategory='Old Book'";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, "Available");
-			
-			ResultSet rs=ps.executeQuery();
-			while(rs.next()) {
+//			ps.setString(1, "Old Book");
+
+			ResultSet rs = ps.executeQuery();
+			int i = 1;
+			while (rs.next() && i <= 4) {
 				b = new BookDetails();
 				b.setBook_id(rs.getInt(1));
 				b.setBookname(rs.getString(2));
@@ -283,11 +247,43 @@ public class BooksDAOImpl implements BooksDao {
 				b.setStatus(rs.getString(6));
 				b.setPhoto(rs.getString(7));
 				b.setEmail(rs.getString(8));
-					
+
+				list.add(b);
+				i++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<BookDetails> getAllRecentBooks() {
+		List<BookDetails> list = new ArrayList<BookDetails>();
+		BookDetails b = null;
+
+		try {
+			String sql = "SELECT * FROM book_details WHERE status = ? ORDER BY book_id DESC ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "Available");
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				b = new BookDetails();
+				b.setBook_id(rs.getInt(1));
+				b.setBookname(rs.getString(2));
+				b.setAuthor(rs.getString(3));
+				b.setPrice(rs.getDouble(4));
+				b.setBookCategory(rs.getString(5));
+				b.setStatus(rs.getString(6));
+				b.setPhoto(rs.getString(7));
+				b.setEmail(rs.getString(8));
+
 				list.add(b);
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
@@ -297,34 +293,32 @@ public class BooksDAOImpl implements BooksDao {
 	public List<BookDetails> getAllOldBooks() {
 		List<BookDetails> list = new ArrayList<BookDetails>();
 		BookDetails b = null;
-		
+
 		try {
 			String sql = "Select * from book_details where bookCategory=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, "Old Book");
-			
-			 ResultSet rs = ps.executeQuery();
-			 
-			 while(rs.next()) {
-				 b=  new BookDetails();
-				 b.setBook_id(rs.getInt(1));
-					b.setBookname(rs.getString(2));
-					b.setAuthor(rs.getString(3));
-					b.setPrice(rs.getDouble(4));
-					b.setBookCategory(rs.getString(5));
-					b.setStatus(rs.getString(6));
-					b.setPhoto(rs.getString(7));
-					b.setEmail(rs.getString(8));
-					
-					list.add(b);
-					
-			 }
-		}
-		catch(Exception e) {
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				b = new BookDetails();
+				b.setBook_id(rs.getInt(1));
+				b.setBookname(rs.getString(2));
+				b.setAuthor(rs.getString(3));
+				b.setPrice(rs.getDouble(4));
+				b.setBookCategory(rs.getString(5));
+				b.setStatus(rs.getString(6));
+				b.setPhoto(rs.getString(7));
+				b.setEmail(rs.getString(8));
+
+				list.add(b);
+
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return list;
 	}
 
@@ -341,11 +335,45 @@ public class BooksDAOImpl implements BooksDao {
 			ps.setString(2, "Available");
 
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
-				
+
 				b = new BookDetails();
-				
+
+				b.setBook_id(rs.getInt(1));
+				b.setBookname(rs.getString(2));
+				b.setAuthor(rs.getString(3));
+				b.setPrice(rs.getDouble(4));
+				b.setBookCategory(rs.getString(5));
+				b.setStatus(rs.getString(6));
+				b.setPhoto(rs.getString(7));
+				b.setEmail(rs.getString(8));
+
+				list.add(b);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<BookDetails> getBookByOld(String email, String category) {
+		List<BookDetails> list = new ArrayList<BookDetails>();
+		BookDetails b = null;
+
+		try {
+			String sql = "select * from book_details where bookCategory=? and email=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, category);
+			ps.setString(2, email);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				b = new BookDetails();
 				b.setBook_id(rs.getInt(1));
 				b.setBookname(rs.getString(2));
 				b.setAuthor(rs.getString(3));
@@ -356,13 +384,37 @@ public class BooksDAOImpl implements BooksDao {
 				b.setEmail(rs.getString(8));
 				
 				list.add(b);
-				
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return list;
 	}
+
+	@Override
+	public boolean delUserOldBook(int bid) {
+		
+		Boolean b = false;
+		
+		try {
+			
+			String sql = "delete from book_details where book_id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, bid);
+			
+			int i = ps.executeUpdate();
+			
+			if(i==1) {
+				b= true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return b;
+	}
+
 
 }
