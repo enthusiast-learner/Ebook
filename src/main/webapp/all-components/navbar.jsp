@@ -27,11 +27,11 @@
 			</div>
 			<div class="col-md-3">
 
-				<form class="d-flex">
+				<form class="d-flex" action="searchBook" method="post">
 
 
 
-					<input class="form-control me-2" type="search" placeholder="Search"
+					<input class="form-control me-2" type="search" placeholder="Search" name="ch"
 						aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>

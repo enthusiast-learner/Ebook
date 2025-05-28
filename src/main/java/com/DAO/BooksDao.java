@@ -31,6 +31,8 @@ public interface BooksDao {
 	
 	public boolean delUserOldBook(int bid);
 	
+	public List<BookDetails> getBookBySearch(String ch);
+	
 	
 	
 	 
