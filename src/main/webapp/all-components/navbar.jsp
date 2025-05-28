@@ -39,43 +39,45 @@
 
 
 			<div class="col-md-6">
-    <c:if test="${not empty userinfo}">
-        <div class="d-flex align-items-center justify-content-end gap-2 flex-wrap">
-            
-            <!-- Cart -->
-            <a href="cart.jsp" class="btn btn-sm btn-warning d-flex align-items-center">
-                <i class="fa fa-shopping-cart me-1"></i>Cart
-            </a>
+				<c:if test="${not empty userinfo}">
+					<div
+						class="d-flex align-items-center justify-content-end gap-2 flex-wrap">
 
-            <!-- Username (with nowrap and ellipsis) -->
-            <a class="btn btn-sm btn-primary d-flex align-items-center"
-               href="#"
-               style=" white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                <i class="fa fa-user me-1"></i>
-                ${userinfo.name}
-            </a>
+						<!-- Cart -->
+						<a href="cart.jsp"
+							class="btn btn-sm btn-warning d-flex align-items-center"> <i
+							class="fa fa-shopping-cart me-1"></i>Cart
+						</a>
 
-            <!-- Logout -->
-            <a class="btn btn-sm btn-danger d-flex align-items-center"
-               href="<%=request.getContextPath()%>/Logoutservlet">
-                <i class="fa-solid fa-right-to-bracket me-1"></i>Logout
-            </a>
+						<!-- Username (with nowrap and ellipsis) -->
+						<a class="btn btn-sm btn-primary d-flex align-items-center"
+							href="#"
+							style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+							<i class="fa fa-user me-1"></i> ${userinfo.name}
+						</a>
 
-        </div>
-    </c:if>
+						<!-- Logout -->
+						<a class="btn btn-sm btn-danger d-flex align-items-center"
+							href="<%=request.getContextPath()%>/Logoutservlet"> <i
+							class="fa-solid fa-right-to-bracket me-1"></i>Logout
+						</a>
 
-    <c:if test="${empty userinfo}">
-        <div class="d-flex align-items-center justify-content-end gap-2">
-            <a class="btn btn-sm btn-primary d-flex align-items-center" href="loginpage.jsp">
-                <i class="fa-solid fa-right-to-bracket me-1"></i>Login
-            </a>
-            <a class="btn btn-sm btn-success d-flex align-items-center" href="registrationpage.jsp">
-                <i class="fa fa-user-plus me-1" aria-hidden="true"></i>Registration
-            </a>
-        </div>
-    </c:if>
-</div>
-			
+					</div>
+				</c:if>
+
+				<c:if test="${empty userinfo}">
+					<div class="d-flex align-items-center justify-content-end gap-2">
+						<a class="btn btn-sm btn-primary d-flex align-items-center"
+							href="loginpage.jsp"> <i
+							class="fa-solid fa-right-to-bracket me-1"></i>Login
+						</a> <a class="btn btn-sm btn-success d-flex align-items-center"
+							href="registrationpage.jsp"> <i class="fa fa-user-plus me-1"
+							aria-hidden="true"></i>Registration
+						</a>
+					</div>
+				</c:if>
+			</div>
+
 
 
 		</div>
@@ -114,8 +116,8 @@
 
 				<form class="d-flex">
 
-					<a href="setting.jsp" class="btn btn-light " type="submit">
-						<i class="fa-solid fa-gear"></i>Setting
+					<a href="setting.jsp" class="btn btn-light " type="submit"> <i
+						class="fa-solid fa-gear"></i>Setting
 					</a>
 					<button class="btn btn-primary" type="submit">
 						<i class="fa-solid fa-phone"></i>Contact Us

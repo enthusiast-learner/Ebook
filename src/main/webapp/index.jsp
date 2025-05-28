@@ -209,7 +209,7 @@
 				class="btn  btn-lg btn-danger m-3 text-white"> View All</a>
 		</div>
 	</div>
-<hr></hr>
+	<hr></hr>
 
 	<div class="container-fluid text-center">
 		<h3>Old Books</h3>

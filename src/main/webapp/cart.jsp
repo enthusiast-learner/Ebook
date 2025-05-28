@@ -31,14 +31,33 @@
 		<div class="alert alert-danger" id="failMsg" role="alert">${failsg}</div>
 		<c:remove var="failmsg" scope="session" />
 	</c:if>
+	<c:if test="${not empty choosePayment}">
+		<div class="alert alert-danger text-center" id="choosePayment"
+			role="alert">${choosePayment}</div>
+		<c:remove var="choosePayment" scope="session" />
+	</c:if>
+	<c:if test="${not empty failorder}">
+		<div class="alert alert-danger text-center" id="failorder"
+			role="alert">${failorder}</div>
+		<c:remove var="failorder" scope="session" />
+	</c:if>
 	
+	<c:if test="${not empty cartempty}">
+		<div class="alert alert-danger text-center" id="cartempty"
+			role="alert">${cartempty}</div>
+		<c:remove var="cartempty" scope="session" />
+	</c:if>
 	<!-- JavaScript to auto-hide messages after 5 seconds -->
-<script>
-    setTimeout(function () {
-        $("#successMsg").fadeOut("slow");
-        $("#failMsg").fadeOut("slow");
-    }, 2000);
-</script>
+	<script>
+		setTimeout(function() {
+			$("#successMsg").fadeOut("slow");
+			$("#failMsg").fadeOut("slow");
+			$("#choosePayment").fadeOut("slow")
+			$("#failorder").fadeOut("slow")
+			$("#cartempty").fadeOut("cartempty")
+			
+		}, 2000);
+	</script>
 
 
 
@@ -100,59 +119,63 @@
 
 			<!-- Right Column -->
 			<div class="col-md-6 card pb-2">
-				<form>
+				<form action="orderServlet" method="post">
 					<h2 class="text-center text-success">Your Details for Order</h2>
+					<input type="hidden" name="uid" value="${userinfo.uid }">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="name" class="form-label">Name</label> <input
-								type="text id=" name"   class="form-control" readonly="readonly"
-								placeholder="Enter full Name" value="<%=u.getName() %>" />
+								type="text" class="form-control" readonly="readonly"
+								placeholder="Enter full Name" name="username"
+								value="<%=u.getName()%>" />
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="email" class="form-label">Email</label> <input
 								type="text" id=" email" class="form-control" readonly="readonly"
-								placeholder="Enter email" value="<%=u.getEmail() %>" />
+								placeholder="Enter email" name="email" value="<%=u.getEmail()%>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="mobile" class="form-label">Mobile No</label> <input
-								type="number" id="mobile" class="form-control" value="<%=u.getMobile() %>" placeholder="" />
+								type="number" name="mobile" id="mobile" class="form-control"
+								value="<%=u.getMobile()%>" placeholder="" />
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="address" class="form-label">Address</label> <input
-								type="text" id=" address" class="form-control"
-								placeholder="Enter address" />
+								type="text" id=" address" class="form-control" name="address"
+								placeholder="Enter address" required />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="landmark" class="form-label">Landmark</label> <input
-								type="text" id="landmark" class="form-control"
-								placeholder="Enter Landmark" />
+								type="text" id="landmark" class="form-control" name="landmark"
+								placeholder="Enter Landmark" required/>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="city" class="form-label">City</label> <input
-								type="text" id="city" class="form-control"
-								placeholder="Enter City" />
+								type="text" id="city" class="form-control" name="city"
+								placeholder="Enter City" required/>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="state" class="form-label">State</label> <input
-								type="text" id="state" class="form-control"
+								type="text" id="state" class="form-control" name="state" required
 								placeholder="Enter State" />
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="zip" class="form-label">Zip</label> <input
-								type="text" id="city" class="form-control" placeholder="" />
+							<label for="zip" class="form-label">Pincode</label> <input
+								type="text" id="city" class="form-control" name="pincode" required />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group">
-							<label>Payment type</label> <select class="form-control">
-								<option>select--</option>
-								<option>Cash On Delivery</option>
+							<label>Payment type</label> <select class="form-control" required
+								name="paymentType">
+								<option value="noselect">select--</option>
+								<option value="COD">Cash On Delivery</option>
 							</select>
 
 						</div>

@@ -22,7 +22,7 @@ public class UserInfoUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
-			System.out.println("UID Parameter: " + req.getParameter("uid"));
+			
 			int uid = Integer.parseInt(req.getParameter("uid"));
 			String name = req.getParameter("name");
 			String email = req.getParameter("email");
