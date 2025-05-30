@@ -20,7 +20,7 @@
 		us = (UserEntity) session.getAttribute("userinfo");
 	}
 	%>
-	
+
 	<%
 	int bid = Integer.parseInt(request.getParameter("bid"));
 	BooksDAOImpl bdao = new BooksDAOImpl(DBConnection.getCon());
@@ -76,19 +76,38 @@
 
 
 				</div>
-				
+
 				<div class=" text-center p-3">
-				<%
-					if("Old Book".equals(b.getBookCategory())){%>
-						<a href="" class="btn btn-success"> <i
+					<%
+					if ("Old Book".equals(b.getBookCategory())) {
+					%>
+					<a href="" class="btn btn-success"> <i
 						class="fa-solid fa-cart-plus"></i>Continue shopping
-					</a> 
-					<%}else{%>
-						<a href="cartServlet?bid=<%=b.getBook_id()%>&uid=<%=us.getUid()%>"class="btn btn-primary"> <i
-						class="fa-solid fa-cart-plus"></i>Add Cart
-					</a> 
-					<%}
-				%>
+					</a>
+					<%
+					} else {
+					%>
+					<%
+					if (us == null) {
+					%>
+					<a href="loginpage.jsp" class="btn btn-primary"
+						onclick="return confirm('Please login first to add this book to your cart');">
+						<i class="fa-solid fa-cart-plus"></i> Add Cart
+					</a>
+					<%
+					} else {
+					%>
+					<a href="cartServlet?bid=<%=b.getBook_id()%>&uid=<%=us.getUid()%>"
+						class="btn btn-primary"> <i class="fa-solid fa-cart-plus"></i>
+						Add Cart
+					</a>
+					<%
+					}
+					%>
+
+					<%
+					}
+					%>
 					<a href="" class="btn btn-danger"><i
 						class="fa-solid fa-indian-rupee-sign"></i><%=b.getPrice()%></a>
 

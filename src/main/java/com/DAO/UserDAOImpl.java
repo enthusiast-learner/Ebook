@@ -23,19 +23,37 @@ public class UserDAOImpl implements UserDAO	 {
 	public boolean userRegister(UserEntity us) {
 		boolean f = false;
 		
+		
+		
 		try {
-			String q = "insert into user  (name,email,mobile,password) values (?,?,?,?) ";
-			PreparedStatement ps = con.prepareStatement(q);
-			ps.setString(1,us.getName());
-			ps.setString(2, us.getEmail());
-			ps.setString(3, us.getMobile());
-			ps.setString(4, us.getPassword());
 			
-			  int affectedrow = ps.executeUpdate();
-			  
-			  if(affectedrow > 0 ) {
-				  f = true ;
-			  }
+			String CheckQuery = "Select * from user where email=?";
+			PreparedStatement ps1 = con.prepareStatement(CheckQuery);
+			ps1.setString(1, us.getEmail());
+			
+			ResultSet rs = ps1.executeQuery();
+			if(rs.next()) {
+				 f = false;
+			}
+			else {
+				String q = "insert into user  (name,email,mobile,password) values (?,?,?,?) ";
+				PreparedStatement ps = con.prepareStatement(q);
+				ps.setString(1,us.getName());
+				ps.setString(2, us.getEmail());
+				ps.setString(3, us.getMobile());
+				ps.setString(4, us.getPassword());
+				
+				
+				
+				  int affectedrow = ps.executeUpdate();
+				  
+				  if(affectedrow > 0 ) {
+					  f = true ;
+				  }
+			}
+			
+			
+			
 			
 		}
 		catch(Exception e) {

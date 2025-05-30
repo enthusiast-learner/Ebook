@@ -74,8 +74,8 @@ public class RegisterServlet extends HttpServlet {
 				    session.setAttribute("regsuc", "Register Successfully");
 				    resp.sendRedirect("registrationpage.jsp");
 				} else {
-				    session.setAttribute("regfail", "Please try again..");
-				    resp.sendRedirect("registrationpage.jsp"); // ✅ don't forget this!
+				    session.setAttribute("regfail", "User with this email already exists");
+				    resp.sendRedirect("registrationpage.jsp"); 
 				}
 		 }
 		 else {

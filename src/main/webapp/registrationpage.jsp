@@ -40,6 +40,10 @@
 							<p class="text-center text-danger">${failmsg}</p>
 							<c:remove var="failmsg" scope="session" />
 						</c:if>
+							<c:if test="${not empty regfail}">
+							<p class="text-center text-danger">${regfail}</p>
+							<c:remove var="regfail" scope="session" />
+						</c:if>
 
 
 						<!-- when user submits the form the data sent to server using HTTP post method

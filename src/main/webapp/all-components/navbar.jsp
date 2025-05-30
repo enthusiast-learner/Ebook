@@ -3,14 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+ <html>
 <head>
 
 <link rel="stylesheet" href="style.css">
 <meta charset="UTF-8">
 
 <title></title>
-
 </head>
 <body>
 
@@ -21,18 +20,17 @@
 
 				<a class="navbar-brand" href="#"> <img src="img/book.png" alt=""
 					width="50" height="35">
-
 				</a>
 
 			</div>
 			<div class="col-md-3">
 
-				<form class="d-flex" action="searchBook" method="post">
+				<form class="d-flex" action="SearchPage.jsp" method="post">
 
 
 
-					<input class="form-control me-2" type="search" placeholder="Search" name="ch"
-						aria-label="Search">
+					<input class="form-control me-2" type="search" placeholder="Search"
+						name="ch" aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 			</div>
@@ -115,13 +113,18 @@
 				</ul>
 
 				<form class="d-flex">
-
-					<a href="setting.jsp" class="btn btn-light " type="submit"> <i
+						<div class="me-2">
+						
+						<a href="setting.jsp" class="btn btn-light btn-sm " type="submit"> <i
 						class="fa-solid fa-gear"></i>Setting
 					</a>
-					<button class="btn btn-primary" type="submit">
+						</div>
+					<div>
+					<button class="btn btn-primary btn-sm" type="submit">
 						<i class="fa-solid fa-phone"></i>Contact Us
 					</button>
+					</div>
+					
 				</form>
 			</div>
 
