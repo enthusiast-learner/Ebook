@@ -11,7 +11,7 @@ MySQL database integration
 
 .
 
-🛠️ Tech Stack
+🛠️ Tech Stack:-
 Frontend: HTML, CSS, Bootstrap, JSP
 Backend: Java Servlets, JDBC
 Database: MySQL
@@ -20,11 +20,11 @@ Server: Apache Tomcat
 Tools: VS Code, Postman (for testing), MySQL Workbench
 
 
-🔐 Authentication
+🔐 Authentication:-
 Role-based login system
 Session tracking for security
 
-📌 Future Enhancements
+📌 Future Enhancements:-
 Add password hashing (bcrypt)
 Pagination on book list
 Add user reviews/ratings
